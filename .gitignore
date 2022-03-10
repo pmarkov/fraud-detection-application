@@ -36,5 +36,5 @@ build/
 .vscode/
 
 ### Maven ###
-mvnw.*
+mvnw*
 mvn_logs.txt
