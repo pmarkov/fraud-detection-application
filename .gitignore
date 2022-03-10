@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-docker/db/*
+docker/db/**
 docker/docker_logs.txt
 docker/tomcat/fraud-detection-api.war
 
@@ -36,4 +36,5 @@ build/
 .vscode/
 
 ### Maven ###
-.mvnw*
+mvnw.*
+mvn_logs.txt
