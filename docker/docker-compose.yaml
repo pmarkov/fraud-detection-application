@@ -1,0 +1,35 @@
+version: '2.1'
+services:
+  neo4j:
+    image: docker_neo4j
+    build: ./neo4j
+    ports:
+    - '7474:7474'
+    - '7687:7687'
+    volumes:
+      - ./db:/data
+
+  nginx:
+    image: docker_nginx
+    build:
+      context: ../
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - '8081:80'
+    depends_on:
+      tomcat:
+        condition: service_started
+
+  tomcat:
+    image: docker_tomcat
+    build:
+      context: ../
+      dockerfile: ./docker/tomcat/Dockerfile
+      args:
+        HTTP_PROXY: ${HTTP_PROXY}
+        HTTPS_PROXY: ${HTTPS_PROXY}
+    ports:
+    - '8080:8080'
+    depends_on:
+      neo4j:
+        condition: service_started
